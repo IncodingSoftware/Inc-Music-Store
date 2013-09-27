@@ -1,0 +1,89 @@
+﻿@model SearchAlbumQuery
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    string resultTableTmpl = Guid.NewGuid().ToString();
+    string formId = Guid.NewGuid().ToString();
+}
+
+
+<div id="@formId">
+    <div>
+        <label>Title</label>    
+        @Html.TextBoxFor(r => r.Title)
+    </div>
+    <br/>
+    <div>
+        <label>Genres</label>
+        @{
+            var listBoxGenresMeta = Html
+                    .When(JqueryBind.InitIncoding)
+                    .Do()
+                    .AjaxGet(Url.Action("FetchForDD", "Genre"))
+                    .OnSuccess(r =>
+                                   {
+                                       r.Self().Core().Insert.WithTemplate(Selector.Jquery.Id("optionsTmpl")).Html();
+                                       r.Self().Core().Store.Hash.Fetch();
+                                   })
+                    .AsHtmlAttributes();
+        }
+        @Html.ListBoxFor(r => r.GenreIds, new SelectList(new string[0]), listBoxGenresMeta)
+    </div>
+    <br/>
+    <div>
+        <label>Artists</label>
+        @{
+            var listBoxArtistsMeta = Html
+                    .When(JqueryBind.InitIncoding)
+                    .Do()
+                    .AjaxGet(Url.Action("FetchForDD", "Artist"))
+                    .OnSuccess(r =>
+                                   {
+                                       r.Self().Core().Insert.WithTemplate(Selector.Jquery.Id("optionsTmpl")).Html();
+                                       r.Self().Core().Store.Hash.Fetch();
+                                   })
+                    .AsHtmlAttributes();
+        }
+        @Html.ListBoxFor(r => r.ArtistIds, new SelectList(new string[0]), listBoxArtistsMeta)
+    </div>
+    <br/>
+    @(Html.When(JqueryBind.Click)
+          .DoWithPreventDefault()
+          .Direct()
+          .OnSuccess(dsl => dsl.With(r => r.Id(formId)).Core().Store.Hash.Insert())
+          .AsHtmlAttributes()
+          .ToButton("Search"))                
+</div>
+
+
+@using (var template = Html.Incoding().ScriptTemplate<AlbumDetailsVm>(resultTableTmpl))
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Artist</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @using (var each = template.ForEach())
+            {
+                <tr>
+                    <td>@each.For(r => r.Title)</td>
+                    <td>@each.For(r => r.Genre)</td>
+                    <td>@each.For(r => r.Artist)</td>
+                    <td>@each.For(r => r.Price)</td>
+                </tr>
+            }
+        </tbody>        
+    </table>
+}
+
+@(Html
+          .When(JqueryBind.InitIncoding | JqueryBind.IncChangeUrl)
+          .Do()
+          .AjaxHashGet(url: Url.Action("Fetch", "Search"))
+          .OnSuccess(dsl => dsl.Self().Core().Insert.WithTemplate(Selector.Jquery.Id(resultTableTmpl)).Html())
+          .AsHtmlAttributes()
+          .ToDiv())

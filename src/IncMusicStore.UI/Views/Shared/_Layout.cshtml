@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>            
+        @Html.Incoding().Link(Url.Content("~/Content/themes/base/jquery-ui.css"))
+        @Html.Incoding().Link(Url.Content("~/Content/Site.css"))
+
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery-1.9.1.min.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery-ui-1.10.2.min.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/underscore.min.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery.form.min.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery.history.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery.validate.min.js"))        
+        @Html.Incoding().Script(Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js"))        
+        @Html.Incoding().Script(Url.Content("~/Scripts/mustache.js"))        
+        
+
+        @Html.Incoding().Script(Url.Content("~/Scripts/incoding.framework.js"))
+        @Html.Incoding().Script(Url.Content("~/Scripts/incoding.meta.language.contrib.js"))
+            
+    </head>
+    <body>
+        @using (var template = Html.Incoding().ScriptTemplate<KeyValueVm>("optionsTmpl"))
+        {
+            using (var each = template.ForEach())
+            {
+                <option value="@each.For(r => r.Value)">
+                    @each.For(r => r.Text)
+                </option>
+            }
+        }
+        <div id="header">
+            <h1>
+                <a href="/">Inc MUSIC STORE</a>
+            </h1>
+            <ul id="navlist">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Search")">Search</a>
+                </li> 
+                <li>
+                    <a href="@Url.Action("Index", "Cart")">Cart</a>
+                </li>
+            </ul>            
+        </div>
+
+        
+
+  
+        @RenderBody()
+   
+
+        <div id="footer">
+            built with <a href="http://incframework.com">Incoding framework</a>
+        </div>
+        <div id="@IncMusicStoreSelector.DefaultDialogId"></div>
+    </body>
+</html>

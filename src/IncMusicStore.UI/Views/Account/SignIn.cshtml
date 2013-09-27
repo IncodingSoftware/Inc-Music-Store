@@ -1,0 +1,25 @@
+﻿@model SignInUserCommand
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+    <legend>Account Information</legend>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Email)        
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
+    </div> 
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Password)        
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div> 
+    <input type="submit" value="Sign in"/>
+    <a href="@Url.Action("SignUp", "Account")">Sign up</a>
+</fieldset>

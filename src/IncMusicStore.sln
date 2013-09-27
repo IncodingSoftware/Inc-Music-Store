@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncMusicStore.Domain", "IncMusicStore.Domain\IncMusicStore.Domain.csproj", "{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncMusicStore.UI", "IncMusicStore.UI\IncMusicStore.UI.csproj", "{736391E1-3448-468C-812B-D3A893E6724C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncMusicStore.UnitTest", "IncMusicStore.UnitTest\IncMusicStore.UnitTest.csproj", "{FBD23207-2585-4B12-A092-DC14EB55E361}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{736391E1-3448-468C-812B-D3A893E6724C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{736391E1-3448-468C-812B-D3A893E6724C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{736391E1-3448-468C-812B-D3A893E6724C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{736391E1-3448-468C-812B-D3A893E6724C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD23207-2585-4B12-A092-DC14EB55E361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD23207-2585-4B12-A092-DC14EB55E361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD23207-2585-4B12-A092-DC14EB55E361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD23207-2585-4B12-A092-DC14EB55E361}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,67 @@
+﻿@using Incoding.CQRS
+@model IndexCartVm
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+<h3>
+    <em>Review</em> your cart:
+</h3>
+<p class="button">
+    @Html.ActionLink("Checkout >>", "Approve", "Cart")
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Album Name
+            </th>
+            <th>
+                Price (each)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>                
+                    @item.Album
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td >
+                    @item.Quantity
+                </td>
+                <td>                
+                    @(Html.When(JqueryBind.Click)
+                          .DoWithPreventDefault()
+                          .AjaxPost(Url.Action("Delete", "Cart", new DeleteEntityByIdCommand(item.Id, typeof(CartItem))))
+                          .OnBegin(dsl => dsl.Self().Core().Break.If(builder => builder.Not.Confirm("Are you sure delete album {0} from cart".F(item.Album))))
+                          .OnSuccess(dsl => dsl.With(r => r.Self().Closest(selector => selector.Tag(HtmlTag.Tr))).Core().JQuery.Manipulation.Remove())
+                          .AsHtmlAttributes(new { href = "#" })
+                          .ToLink("Remove from cart"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                Total
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td id="cart-total">
+                @Model.Total
+            </td>
+        </tr>
+    </tfoot>
+</table>

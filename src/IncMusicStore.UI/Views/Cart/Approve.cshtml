@@ -1,0 +1,24 @@
+﻿@model ApproveCartCommand
+
+@using (Html.BeginForm()) {
+    
+    <h2>Address And Payment</h2>
+    <fieldset>
+        <legend>Shipping Information</legend>
+
+        @Html.EditorForModel()
+    </fieldset>
+    <fieldset>
+        <legend>Payment</legend>
+        <p>We're running a promotion: all music is free with the promo code: "FREE"</p>
+
+        <div>
+            <label>Promo code</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(r=>r.PromoCode)
+        </div>
+    </fieldset>
+    
+    <input type="submit" value="Submit Order" />
+}

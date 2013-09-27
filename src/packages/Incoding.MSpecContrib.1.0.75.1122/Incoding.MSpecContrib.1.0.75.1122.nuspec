@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Incoding.MSpecContrib</id>
+    <version>1.0.75.1122</version>
+    <title>Incoding tests helpers</title>
+    <authors>Vlad Kopachinsky</authors>
+    <owners>Vlad Kopachinsky</owners>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>http://incframework.com/</projectUrl>
+    <iconUrl>http://incframework.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Mspec helpers would shorter time spent on unit testing</description>
+    <summary>Unit testing. MSpec helpers for quick code coverage.</summary>
+    <releaseNotes />
+    <copyright>Copyright  2013</copyright>
+    <language>en-US</language>
+    <tags>unit test,mspec</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="Machine.Specifications" version="0.5.0.0" />
+        <dependency id="Moq" version="4.0.10827.0" />
+        <dependency id="FluentValidation-signed" version="3.4.6.0" />
+        <dependency id="FluentNHibernate" version="1.3.0.733" />
+      </group>
+    </dependencies>
+    <references>
+      <reference file="Incoding.MSpecContrib.dll" />
+    </references>
+  </metadata>
+</package>

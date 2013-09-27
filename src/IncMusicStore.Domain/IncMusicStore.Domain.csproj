@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C269D441-C921-4DCE-ADBF-0F6DFE1D4B9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IncMusicStore.Domain</RootNamespace>
+    <AssemblyName>IncMusicStore.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation-Signed.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC3-Signed.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Incoding, Version=1.0.252.1122, Culture=neutral, PublicKeyToken=dd0e8930fef8d168, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Incoding.Framework.1.0.252.1122\lib\net40\Incoding.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=6.1.0.0, Culture=neutral, PublicKeyToken=3f033448d4bb5376, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JetBrains.Annotations.7.0\lib\net45\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\IncMusicStoreExtensions.cs" />
+    <Compile Include="Infrastructure\Impl\HttpSessionContext.cs" />
+    <Compile Include="Infrastructure\IncMusicStoreApplication.cs" />
+    <Compile Include="Infrastructure\Core\ISessionContext.cs" />
+    <Compile Include="Infrastructure\Impl\DefaultFormAuthentication.cs" />
+    <Compile Include="Infrastructure\Core\IFormAuthentication.cs" />
+    <Compile Include="Operations\Command\AddAlbumCommand.cs" />
+    <Compile Include="Operations\Command\AddArtistCommand.cs" />
+    <Compile Include="Operations\Command\AddCartItemCommand.cs" />
+    <Compile Include="Operations\Command\AddGenreCommand.cs" />
+    <Compile Include="Operations\Command\ApproveCartCommand.cs" />
+    <Compile Include="Operations\Command\SignInUserCommand.cs" />
+    <Compile Include="Operations\Command\SignUpUserCommand.cs" />
+    <Compile Include="Operations\Query\GetAlbumQuery.cs" />
+    <Compile Include="Operations\Query\GetAlbumsTopSellingQuery.cs" />
+    <Compile Include="Operations\Query\GetCurrentCartQuery.cs" />
+    <Compile Include="Operations\Query\SearchAlbumQuery.cs" />
+    <Compile Include="Persistence\Album.cs" />
+    <Compile Include="Persistence\Artist.cs" />
+    <Compile Include="Persistence\Cart.cs" />
+    <Compile Include="Persistence\CartItem.cs" />
+    <Compile Include="Persistence\Component\FullName.cs" />
+    <Compile Include="Persistence\Genre.cs" />
+    <Compile Include="Persistence\IncMusicStoreMap.cs" />
+    <Compile Include="Persistence\Order.cs" />
+    <Compile Include="Persistence\OrderItem.cs" />
+    <Compile Include="Persistence\Component\PaymentInfo.cs" />
+    <Compile Include="Persistence\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setups\FillDataBaseSetUp.cs" />
+    <Compile Include="Setups\DataBaseSetUp.cs" />
+    <Compile Include="Specifications\Fetch\AlbumWithArtistFetchSpec.cs" />
+    <Compile Include="Specifications\Fetch\AlbumWithGenreFetchSpec.cs" />
+    <Compile Include="Specifications\Fetch\AlbumWithOrderItemFetchSpec.cs" />
+    <Compile Include="Specifications\Fetch\CartWithItemFetchSpec.cs" />
+    <Compile Include="Specifications\Order\AlbumByOrderItemCountOrderSpec.cs" />
+    <Compile Include="Specifications\Where\AblumInArtistsOptWhereSpec.cs" />
+    <Compile Include="Specifications\Where\AlbumContainsTitleOptWhereSpec.cs" />
+    <Compile Include="Specifications\Where\AlbumInGenresOptWhereSpec.cs" />
+    <Compile Include="Specifications\Where\CartByUserWhereSpec.cs" />
+    <Compile Include="Specifications\Where\UserByCredentialWhereSpec.cs" />
+    <Compile Include="Subsribers\Events\SingInUserEvent.cs" />
+    <Compile Include="Subsribers\Impl\UserSubscriber.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

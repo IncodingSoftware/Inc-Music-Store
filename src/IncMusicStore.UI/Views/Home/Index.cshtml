@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+    string albumTopSellingTmpl = Guid.NewGuid().ToString();
+    string genreMenuTmpl = Guid.NewGuid().ToString();
+}
+
+
+@using (var template = Html.Incoding().ScriptTemplate<GenreVm>(genreMenuTmpl))
+{
+    <ul>
+        @using (var each = template.ForEach())
+        {
+            <li>                
+                <a href="@HttpUtility.UrlDecode(Url.Action("Index", "Search").SetHash("").AppendToHashQueryString(new { GenreIds = each.For(r => r.Id) }))">
+                    @each.For(r => r.Name)
+                </a>
+            </li>
+        }
+    </ul>
+}
+@(Html.When(JqueryBind.InitIncoding)
+      .Do()
+      .AjaxGet(Url.Action("Fetch", "Genre"))
+      .OnSuccess(dsl => dsl.Self().Core().Insert.WithTemplate(Selector.Jquery.Id(genreMenuTmpl)).Html())
+      .AsHtmlAttributes(new { style = "float:left;" })
+      .ToDiv())
+
+<div id="main">      
+    <div id="promotion">
+    </div>
+    @using (var template = Html.Incoding().ScriptTemplate<AlbumTopSellingVm>(albumTopSellingTmpl))
+    {
+        <h3>
+            <em>Fresh</em> off the grill
+        </h3>
+        <ul id="album-list">
+            @using (var each = template.ForEach())
+            {
+                <li>
+                    @using (Html.When(JqueryBind.Click)
+                                .Do()
+                                .AjaxGet(HttpUtility.UrlDecode(Url.Action("Details", "Album", new { id = each.For(r => r.Id) })))
+                                .OnSuccess(dsl =>
+                                               {
+                                                   dsl.With(selector => selector.Id(IncMusicStoreSelector.DefaultDialogId)).Core().Insert.Html();
+                                                   dsl.With(selector => selector.Id(IncMusicStoreSelector.DefaultDialogId)).JqueryUI().Dialog.Open(options =>
+                                                                                                                                                       {
+                                                                                                                                                           options.Title = each.For(r => r.Title);
+                                                                                                                                                           options.Width = "auto";
+                                                                                                                                                           options.Modal = true;
+                                                                                                                                                       });
+                                               })
+                                .AsHtmlAttributes(new { href = "#" })
+                                .ToBeginTag(Html, HtmlTag.A))
+                    {
+                        <img class="img-art" alt="@each.For(r => r.Title)" src="@each.For(r => r.ArtUrl)" />
+                        <div>@each.For(r => r.Title)</div>
+                    }
+                </li>
+            }
+        </ul>
+    }
+    @(Html
+              .When(JqueryBind.InitIncoding)
+              .Do()
+              .AjaxGet(Url.Action("FetchTopSelling", "Album"))
+              .OnSuccess(dsl => dsl.Self().Core().Insert.WithTemplate(Selector.Jquery.Id(albumTopSellingTmpl)).Html())
+              .AsHtmlAttributes()
+              .ToDiv())
+</div>
